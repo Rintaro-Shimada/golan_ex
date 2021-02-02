@@ -22,9 +22,6 @@ func main() {
 	sc.Split(bufio.ScanWords)
 
 	n := nextInt()
-	x := 0
-	for i := 0; i < n; i++ {
-		x += nextInt()
-	}
-	fmt.Println(x)
+
+	fmt.Println(n)
 }
