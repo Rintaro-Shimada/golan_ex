@@ -18,30 +18,30 @@ func nextInt() int {
 	return i
 }
 
-func main() {
-	sc.Split(bufio.ScanWords)
-
-	var n int
-	n = nextInt()
+func matrix(num int) [][]int {
 	var t, x, y int
-	matrix := make([][]int, n)
-
-	for i := 0; i < n; i++ {
+	matrix := make([][]int, num)
+	for i := 0; i < num; i++ {
 		t = nextInt()
 		x = nextInt()
 		y = nextInt()
 		matrix[i] = []int{t, x, y}
 	}
+	return matrix
+}
 
+func check(matrix [][]int, n int) bool {
 	//位置情報
 	position := []int{0, 0}
 
 	var status = false
+	var workCount int
 	for i := 0; i < n; i++ {
 		//移動回数
-		workCount := matrix[i][0] //3
 		if i > 0 {
 			workCount = matrix[i][0] - matrix[i-1][0]
+		} else {
+			workCount = matrix[i][0]
 		}
 
 		for j := 0; j < workCount; j++ {
@@ -56,7 +56,6 @@ func main() {
 			} else {
 				position[0]++
 			}
-			//fmt.Println(position)
 		}
 
 		if position[0] == matrix[i][1] && position[1] == matrix[i][2] {
@@ -67,6 +66,14 @@ func main() {
 			break
 		}
 	}
+	return status
+}
+
+func main() {
+	sc.Split(bufio.ScanWords)
+	n := nextInt()
+	matrix := matrix(n)
+	status := check(matrix, n)
 
 	if status {
 		fmt.Println("Yes")
