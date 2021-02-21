@@ -7,14 +7,14 @@ func check(num int) int {
 
 	for i := 1; i <= num; i++ {
 		for j := 1; j <= num; j++ {
-			if num < i*j {
+			if i*j > num {
 				break
 			}
 			for k := 1; k <= num; k++ {
-				pre := i * j * k
-				if num >= pre && 0 < pre {
-					//fmt.Println(i, j, k)
+				if i*j*k <= num {
 					count++
+				} else {
+					break
 				}
 			}
 		}
