@@ -18,20 +18,24 @@ func nextInt() int {
 	return i
 }
 
-func nextString() string {
+func nextFloat() float64 {
 	sc.Scan()
-	return sc.Text()
+	num, err := strconv.ParseFloat(sc.Text(), 64)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
+	return num
 }
 
 func main() {
 	sc.Split(bufio.ScanWords)
 	n := nextInt()
 
-	matrix := make(map[int]string)
+	array := make([]float64, n)
 	for i := 0; i < n; i++ {
-		x := nextString()
-		matrix[i] = x
+		numFloat := nextFloat()
+		array[i] = numFloat
 	}
 
-	fmt.Println(matrix)
+	fmt.Println(array)
 }

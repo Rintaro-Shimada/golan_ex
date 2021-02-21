@@ -20,8 +20,7 @@ func nextInt() int {
 
 func nextString() string {
 	sc.Scan()
-	s := sc.Text()
-	return s
+	return sc.Text()
 }
 
 func main() {

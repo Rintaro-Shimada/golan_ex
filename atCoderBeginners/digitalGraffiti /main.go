@@ -18,24 +18,57 @@ func nextInt() int {
 	return i
 }
 
-func nextString() string {
+func readLine() string {
 	sc.Scan()
-	s := sc.Text()
-	return s
+	return sc.Text()
 }
 
 func main() {
 	sc.Split(bufio.ScanWords)
-	n1 := nextInt()
-	n2 := nextInt()
 
-	matrix := make(map[int]string)
-	for i := 0; i < n1; i++ {
-		x := nextString()
-		matrix[i] = x
+	h, w := nextInt(), nextInt()
+
+	//byte の取得
+	white := "."[0]
+	black := "#"[0]
+
+	mat := make([]string, h)
+	for i := 0; i < h; i++ {
+		mat[i] = readLine()
 	}
 
-	fmt.Println(n1)
-	fmt.Println(n2)
-	fmt.Println(matrix)
+	count := 0
+
+	for i := 0; i < h; i++ {
+		for j := 0; j < w; j++ {
+			if mat[i][j] == white {
+				continue
+			}
+			if mat[i-1][j] == white && mat[i][j-1] == white {
+				count++
+			}
+			if mat[i-1][j] == white && mat[i][j+1] == white {
+				count++
+			}
+			if mat[i+1][j] == white && mat[i][j-1] == white {
+				count++
+			}
+			if mat[i+1][j] == white && mat[i][j+1] == white {
+				count++
+			}
+			if mat[i-1][j] == black && mat[i][j-1] == black && mat[i-1][j-1] == white {
+				count++
+			}
+			if mat[i-1][j] == black && mat[i][j+1] == black && mat[i-1][j+1] == white {
+				count++
+			}
+			if mat[i+1][j] == black && mat[i][j-1] == black && mat[i+1][j-1] == white {
+				count++
+			}
+			if mat[i+1][j] == black && mat[i][j+1] == black && mat[i+1][j+1] == white {
+				count++
+			}
+		}
+	}
+	fmt.Println(count)
 }

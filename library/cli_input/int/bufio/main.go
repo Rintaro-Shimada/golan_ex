@@ -9,15 +9,19 @@ import (
 
 var sc = bufio.NewScanner(os.Stdin)
 
-func readLine() int {
+func readLineFloat64() float64 {
 	sc.Scan()
-	num, _ := strconv.Atoi(sc.Text())
+	sc.Text()
+	num, err := strconv.ParseFloat(sc.Text(), 64)
+	if err != nil {
+		fmt.Println(err.Error())
+	}
 	return num
 }
 
 func main() {
-	var n int
-	n = readLine()
+	var n float64
+	n = readLineFloat64()
 
 	fmt.Println(n)
 }

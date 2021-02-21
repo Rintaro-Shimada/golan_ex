@@ -18,20 +18,21 @@ func nextInt() int {
 	return i
 }
 
-func nextString() string {
-	sc.Scan()
-	return sc.Text()
-}
-
 func main() {
 	sc.Split(bufio.ScanWords)
+
 	n := nextInt()
 
-	matrix := make(map[int]string)
 	for i := 0; i < n; i++ {
-		x := nextString()
-		matrix[i] = x
-	}
+		left := nextInt()
+		right := nextInt()
 
-	fmt.Println(matrix)
+		max := (right - (left * 2)) + 1
+
+		if max <= 0 {
+			fmt.Println("0")
+		} else {
+			fmt.Println((max + 1) * max / 2)
+		}
+	}
 }
