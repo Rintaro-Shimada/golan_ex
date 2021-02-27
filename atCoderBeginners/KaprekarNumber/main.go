@@ -3,7 +3,6 @@ package main
 import (
 	"bufio"
 	"fmt"
-	"math"
 	"os"
 	"sort"
 	"strconv"
@@ -21,21 +20,24 @@ func nextInt() int {
 	return i
 }
 
+func ascending(i int) int {
+	strNum := strconv.Itoa(i)
+	splitNum := strings.Split(strNum, "")
+	sort.Sort(sort.Reverse(sort.StringSlice(splitNum)))
+	ans, _ := strconv.Atoi(strings.Join(splitNum, ""))
+	return ans
+}
+
+func descending(i int) int {
+	strNum := strconv.Itoa(i)
+	splitNum := strings.Split(strNum, "")
+	sort.Strings(splitNum)
+	ans, _ := strconv.Atoi(strings.Join(splitNum, ""))
+	return ans
+}
+
 func check(n int) int {
-	strN := strconv.Itoa(n)
-	splitN := strings.Split(strN, "")
-	sort.Strings(splitN)
-
-	min := 0
-	max := 0
-	length := len(splitN)
-
-	for i, e := range splitN {
-		num, _ := strconv.Atoi(e)
-		min += int(math.Pow(10, float64(length-i-1))) * num
-		max += int(math.Pow(10, float64(i))) * num
-	}
-	return max - min
+	return ascending(n) - descending(n)
 }
 
 func main() {
@@ -44,14 +46,8 @@ func main() {
 	n := nextInt()
 	n2 := nextInt()
 
-	var ans int
 	for i := 0; i < n2; i++ {
-		if i == 0 {
-			ans = check(n)
-		} else {
-			ans = check(ans)
-		}
+		n = check(n)
 	}
-
-	fmt.Println(ans)
+	fmt.Println(n)
 }
