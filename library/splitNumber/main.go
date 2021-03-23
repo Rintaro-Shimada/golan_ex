@@ -19,7 +19,6 @@ func descending(i int) int {
 	strNum := strconv.Itoa(i)
 	splitNum := strings.Split(strNum, "")
 	sort.Strings(splitNum)
-	ans, _ := strconv.Atoi(strings.Join(splitNum, ""))
 	return ans
 }
 
